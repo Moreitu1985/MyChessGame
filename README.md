@@ -24,7 +24,7 @@ chess/
 
 ---
 
-## 🏗️ How I Tackled It — Phase by Phase
+##  How I Tackled It — Phase by Phase
 
 ### ✅ Phase 1 — The Board & Pieces
 
