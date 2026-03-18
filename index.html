@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itumeleng's Chess Board</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- ── HEADER ── -->
+  <header>
+    <span class="crown">♛</span>
+    <h1>Itumeleng's Chess Board</h1>
+    <p class="subtitle">A Royal Game of Strategy &amp; Elegance</p>
+  </header>
+
+  <!-- ── MAIN GAME LAYOUT ── -->
+  <div class="game-layout">
+
+    <!-- LEFT PANEL -->
+    <div class="side-panel">
+
+      <div class="panel-box">
+        <div class="panel-title">Current Turn</div>
+        <div class="turn-display">
+          <span class="turn-piece" id="turn-icon">♔</span>
+          <div class="turn-text">
+            <strong id="turn-name">White</strong>
+            to move
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <div class="status-msg" id="status-msg">Game in progress</div>
+        </div>
+      </div>
+
+      <div class="panel-box">
+        <div class="panel-title">Captured by White</div>
+        <div class="captured-row" id="white-captured"></div>
+        <div class="panel-title" style="margin-top:10px;">Captured by Black</div>
+        <div class="captured-row" id="black-captured"></div>
+        <div class="score-diff" id="score-diff"></div>
+      </div>
+
+      <div class="panel-box">
+        <div class="panel-title">Move History</div>
+        <div id="move-history"></div>
+      </div>
+
+      <div class="panel-box">
+        <div class="btn-row">
+          <button class="btn" onclick="restartGame()">⟳ New Game</button>
+          <button class="btn" onclick="undoMove()">↩ Undo</button>
+        </div>
+      </div>
+
+    </div>
+    <!-- END LEFT PANEL -->
+
+    <!-- BOARD -->
+    <div class="board-frame">
+      <div class="board-container">
+        <div class="coord-wrap">
+          <div class="coords-files" id="files-top"></div>
+          <div style="display:flex;">
+            <div class="coords-ranks" id="ranks-left"></div>
+            <div id="board"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END BOARD -->
+
+    <!-- RIGHT PANEL -->
+    <div class="side-panel" style="align-items:flex-start;">
+
+      <div class="panel-box" style="width:100%;">
+        <div class="panel-title">Phase Progress</div>
+        <div style="font-size:0.72rem; line-height:2; color:var(--text-dim);">
+          <div style="color:#66cc66;">✅ Phase 1 — Board &amp; Pieces</div>
+          <div style="color:#66cc66;">✅ Phase 2 — Legal Moves &amp; Turns</div>
+          <div style="color:#66cc66;">✅ Phase 3 — Castling, Promotion, En Passant</div>
+          <div style="color:#66cc66;">✅ Phase 4 — Check, Checkmate, History, Restart</div>
+          <div style="color:var(--gold-dim);">🤖 Bonus — AI Opponent (Coming Soon)</div>
+        </div>
+      </div>
+
+      <div class="panel-box" style="width:100%;">
+        <div class="panel-title">How to Play</div>
+        <div style="font-family:'EB Garamond',serif; font-size:0.82rem; line-height:1.7; color:var(--text-dim);">
+          Click a piece to select it.<br>
+          Green dots = legal moves.<br>
+          Click a dot to move.<br><br>
+          <span style="color:var(--gold-dim);">Special rules active:</span><br>
+          • Castling<br>
+          • En Passant<br>
+          • Pawn Promotion<br>
+          • Check detection<br>
+          • Checkmate &amp; Stalemate
+        </div>
+      </div>
+
+    </div>
+    <!-- END RIGHT PANEL -->
+
+  </div>
+  <!-- END GAME LAYOUT -->
+
+</div>
+<!-- END PAGE WRAP -->
+
+<!-- ── PAWN PROMOTION MODAL ── -->
+<div id="promo-modal">
+  <div class="promo-title">Choose Promotion</div>
+  <div class="promo-pieces" id="promo-choices"></div>
+</div>
+
+<!-- ── GAME OVER BANNER ── -->
+<div id="game-over-banner">
+  <div class="banner-title" id="banner-title"></div>
+  <div class="banner-sub" id="banner-sub"></div>
+  <button class="btn" onclick="restartGame()" style="margin-top:10px; padding:10px 24px; font-size:0.8rem;">
+    Play Again
+  </button>
+</div>
+
+<script src="chess.js"></script>
+</body>
+</html>

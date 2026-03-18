@@ -1,2 +1,0 @@
-# MyChessGame
-Simple chess Game
